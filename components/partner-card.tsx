@@ -81,9 +81,10 @@ export function PartnerCard({
 
       {/* Modal Biography */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="w-[calc(100%-1.5rem)] max-w-2xl max-h-[85vh] overflow-y-auto bg-[#0a0f1d] border border-zinc-800 text-zinc-100 p-5 sm:p-8 rounded-xl">
-          <DialogHeader className="flex flex-col sm:flex-row gap-6 items-start text-left">
-            <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
+        <DialogContent className="w-[calc(100%-1.5rem)] max-w-2xl bg-[#0a0f1d] border border-zinc-800 text-zinc-100 p-6 sm:p-8 rounded-xl overflow-hidden">
+          
+          <DialogHeader className="flex flex-col sm:flex-row gap-5 items-start text-left pb-4 border-b border-zinc-800/60">
+            <div className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
               <Image
                 src={image}
                 alt={name}
@@ -95,10 +96,10 @@ export function PartnerCard({
               <span className="text-xs font-semibold tracking-widest text-primary uppercase">
                 {role}
               </span>
-              <DialogTitle className="font-serif text-3xl font-medium tracking-wide text-zinc-100 mt-1 mb-2">
+              <DialogTitle className="font-serif text-2xl sm:text-3xl font-medium tracking-wide text-zinc-100 mt-1 mb-2">
                 {name}
               </DialogTitle>
-              <div className="flex flex-col gap-1.5 text-zinc-400 text-sm">
+              <div className="flex flex-col gap-1 text-zinc-400 text-sm">
                 <a href={`mailto:${email}`} className="flex items-center gap-2 hover:text-primary transition-colors">
                   <Mail className="h-4 w-4 text-primary" />
                   {email}
@@ -111,13 +112,14 @@ export function PartnerCard({
             </div>
           </DialogHeader>
 
-          <div className="mt-6 space-y-6">
+          {/* Scrollable body with safe padding margin on the right */}
+          <div className="mt-5 max-h-[50vh] sm:max-h-[55vh] overflow-y-auto pr-2 sm:pr-4 space-y-6 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
             <DialogDescription className="text-zinc-300 text-sm leading-relaxed font-sans font-light">
               {longBio}
             </DialogDescription>
 
             {/* Credentials & Education */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-zinc-800">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-zinc-800/60">
               <div>
                 <h4 className="flex items-center gap-2 font-serif text-base font-semibold text-primary mb-3">
                   <Award className="h-4 w-4" />
