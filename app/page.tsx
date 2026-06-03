@@ -233,7 +233,9 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#070B13] text-zinc-100 font-sans selection:bg-primary selection:text-primary-foreground bg-grain bg-grid-pattern">
+    <div className="relative min-h-screen bg-[#070B13] text-zinc-100 font-sans selection:bg-primary selection:text-primary-foreground bg-grid-pattern">
+      {/* Global Grain Texture Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-50 bg-grain" />
       
       {/* BACKGROUND GRADIENTS */}
       <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-primary/5 blur-[130px] pointer-events-none" />
@@ -420,7 +422,7 @@ export default function Home() {
             </div>
 
             {/* Right Graphic/Image - Editorial composition */}
-            <div className="lg:col-span-5 relative mt-12 lg:mt-0 flex justify-center w-full">
+            <div className="lg:col-span-5 relative mt-12 lg:mt-0 flex justify-center w-full px-6 sm:px-0">
               <motion.div
                 initial={{ opacity: 0, scale: 0.98, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -428,7 +430,7 @@ export default function Home() {
                 className="relative w-full max-w-[360px] sm:max-w-[400px]"
               >
                 {/* Offset background gold frame */}
-                <div className="absolute inset-0 translate-x-5 translate-y-5 border border-primary/20 pointer-events-none rounded-lg z-0" />
+                <div className="absolute inset-0 translate-x-3 translate-y-3 sm:translate-x-5 sm:translate-y-5 border border-primary/20 pointer-events-none rounded-lg z-0" />
 
                 {/* Foreground Image Container */}
                 <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden border border-zinc-800/80 shadow-[0_25px_55px_rgba(0,0,0,0.65)] bg-[#0d121f] z-10 group">
