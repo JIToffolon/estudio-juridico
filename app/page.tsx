@@ -166,15 +166,17 @@ export default function Home() {
     const element = document.getElementById(id);
     if (element) {
       const offset = 80; // height of sticky header
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      // Small delay to allow mobile drawer state transition to finish
+      // avoiding layout jumps during scroll calculations.
+      setTimeout(() => {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }, 120);
     }
   };
 
@@ -290,38 +292,38 @@ export default function Home() {
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
-      </header>
 
-      {/* MOBILE DRAWER */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden border-b border-zinc-800 bg-[#070B13] overflow-hidden"
-          >
-            <div className="container mx-auto px-6 py-6 flex flex-col gap-4 text-zinc-300">
-              {["Especialidades", "Socios", "Testimonios", "Contacto"].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => handleScroll(section.toLowerCase())}
-                  className="py-2 text-left text-base font-medium tracking-wide hover:text-primary transition-colors border-b border-zinc-900"
+        {/* MOBILE DRAWER */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden absolute top-20 left-0 w-full border-b border-zinc-800 bg-[#070B13] overflow-hidden z-50 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+            >
+              <div className="container mx-auto px-6 py-6 flex flex-col gap-4 text-zinc-300">
+                {["Especialidades", "Socios", "Testimonios", "Contacto"].map((section) => (
+                  <button
+                    key={section}
+                    onClick={() => handleScroll(section.toLowerCase())}
+                    className="py-2 text-left text-base font-medium tracking-wide hover:text-primary transition-colors border-b border-zinc-900/60"
+                  >
+                    {section}
+                  </button>
+                ))}
+                <Button
+                  onClick={() => handleScroll("contacto")}
+                  className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground tracking-wider"
                 >
-                  {section}
-                </button>
-              ))}
-              <Button
-                onClick={() => handleScroll("contacto")}
-                className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground tracking-wider"
-              >
-                Solicitar Consulta
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  Solicitar Consulta
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
 
       {/* HERO SECTION */}
       <section id="inicio" className="relative flex min-h-[calc(100vh-80px)] items-center px-6 sm:px-8 py-20 lg:py-28 overflow-hidden">
