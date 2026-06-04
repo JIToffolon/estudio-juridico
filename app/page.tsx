@@ -235,13 +235,13 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#070B13] text-zinc-100 font-sans selection:bg-primary selection:text-primary-foreground bg-grid-pattern">
+    <div className="relative min-h-screen bg-[#070B13] text-zinc-100 font-sans selection:bg-primary selection:text-primary-foreground bg-grid-pattern overflow-x-hidden">
       {/* Global Grain Texture Overlay */}
       <div className="fixed inset-0 pointer-events-none z-50 bg-grain" />
       
-      {/* BACKGROUND GRADIENTS */}
-      <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-primary/5 blur-[130px] pointer-events-none" />
-      <div className="absolute top-[800px] left-0 -z-10 h-[600px] w-[600px] rounded-full bg-primary/3 blur-[140px] pointer-events-none" />
+      {/* BACKGROUND GRADIENTS — clamped to viewport to prevent overflow */}
+      <div className="absolute top-0 right-0 -z-10 h-[600px] w-[min(600px,100vw)] rounded-full bg-primary/5 blur-[130px] pointer-events-none" />
+      <div className="absolute top-[800px] left-0 -z-10 h-[600px] w-[min(600px,100vw)] rounded-full bg-primary/3 blur-[140px] pointer-events-none" />
 
       {/* HEADER / NAVIGATION */}
       <header className="sticky top-0 z-50 w-full border-b border-zinc-800/60 bg-[#070B13]/85 backdrop-blur-md transition-all duration-300">
@@ -404,21 +404,21 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.2, delay: 0.5 }}
-                className="flex items-center gap-8 pt-8 border-t border-zinc-900 w-full"
+                className="flex flex-wrap items-center gap-x-6 gap-y-4 sm:gap-8 pt-8 border-t border-zinc-900 w-full"
               >
                 <div>
-                  <h4 className="font-serif text-2xl font-semibold text-primary">98%</h4>
+                  <h4 className="font-serif text-xl sm:text-2xl font-semibold text-primary">98%</h4>
                   <p className="text-zinc-500 text-[10px] uppercase tracking-widest mt-0.5 font-semibold">Casos Exitosos</p>
                 </div>
-                <div className="h-8 w-px bg-zinc-800/80" />
+                <div className="h-8 w-px bg-zinc-800/80 hidden sm:block" />
                 <div>
-                  <h4 className="font-serif text-2xl font-semibold text-primary">25+</h4>
+                  <h4 className="font-serif text-xl sm:text-2xl font-semibold text-primary">25+</h4>
                   <p className="text-zinc-500 text-[10px] uppercase tracking-widest mt-0.5 font-semibold">Años de Trayectoria</p>
                 </div>
-                <div className="h-8 w-px bg-zinc-800/80" />
+                <div className="h-8 w-px bg-zinc-800/80 hidden sm:block" />
                 <div>
-                  <h4 className="font-serif text-2xl font-semibold text-primary">USD 2B+</h4>
-                  <p className="text-zinc-500 text-[10px] uppercase tracking-widest mt-0.5 font-semibold">En Transacciones M&A</p>
+                  <h4 className="font-serif text-xl sm:text-2xl font-semibold text-primary">USD 2B+</h4>
+                  <p className="text-zinc-500 text-[10px] uppercase tracking-widest mt-0.5 font-semibold">Transacciones M&A</p>
                 </div>
               </motion.div>
             </div>
@@ -550,12 +550,12 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative max-w-4xl mx-auto px-10">
+          <div className="relative max-w-4xl mx-auto px-0 sm:px-10">
             <Carousel opts={{ align: "start", loop: true }} className="w-full">
               <CarouselContent>
                 {testimonials.map((item, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2 pl-4">
-                    <div className="h-full flex flex-col justify-between p-6 md:p-8 bg-[#0d121f]/60 rounded-xl border border-zinc-800/80 hover:border-primary/35 transition-colors duration-300">
+                    <div className="h-full flex flex-col justify-between p-5 sm:p-6 md:p-8 bg-[#0d121f]/60 rounded-xl border border-zinc-800/80 hover:border-primary/35 transition-colors duration-300">
                       <div>
                         <div className="flex items-center justify-between mb-4">
                           <Quote className="h-8 w-8 text-primary/20" />
