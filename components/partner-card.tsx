@@ -81,7 +81,7 @@ export function PartnerCard({
 
       {/* Modal Biography */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="w-[calc(100%-1.5rem)] max-w-2xl bg-[#0a0f1d] border border-zinc-800 text-zinc-100 p-6 sm:p-8 rounded-xl overflow-hidden">
+        <DialogContent className="sm:max-w-2xl bg-[#0a0f1d] border border-zinc-800 text-zinc-100 p-4 sm:p-8 rounded-xl overflow-hidden">
           
           <DialogHeader className="flex flex-col sm:flex-row gap-5 items-start text-left pb-4 border-b border-zinc-800/60">
             <div className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
